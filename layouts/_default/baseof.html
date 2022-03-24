@@ -1,72 +1,112 @@
 <style>
-#fastSearch { 
-  visibility: hidden;
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  display: inline-block;
-  width: 300px;
-}      
+  #fastSearch {
+    visibility: hidden;
+    position: absolute;
+    right: 25%;
+    left: 25%;
+    top: 25%;
+    display: inline-block;
+    /*width: 300px;*/
+    display: inline-block;
+  }
 
-#fastSearch input { 
-  padding: 4px 10px;
-  width: 100%;
-  height: 31px;
-  font-size: 1.6em;
-  color: rgb(0, 0, 0);
-  background-color: rgb(255, 255, 255);
-  border-radius: 3px 3px 3px 3px;
-  border: none;
-  outline: none;
-  text-align: left;
-  display: inline-block;
-}
+  .overlay {
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+  }
 
-#searchResults li { 
-  list-style: none; 
-  margin-left: 0em;
-  background-color: #333; 
-  border-bottom: 1px dotted #000;
-}
-  #searchResults li .title { font-size: 1.1em; margin-bottom: 10px; display: inline-block;}
+  #fastSearch ul {
+    margin-left: 0;
+    padding: 0;
+    width: 100%;
+  }
 
-#searchResults { visibility: inherit; display: inline-block; width: 320px; }
-#searchResults a { text-decoration: none !important; padding: 10px; display: inline-block; }
-#searchResults a:hover, a:focus { outline: 0; background-color: #666; color: #fff; width: 100%;}
+  #fastSearch input {
+    padding: 4px 10px;
+    width: 100%;
+    height: 31px;
+    font-size: 1.6em;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    border-radius: 3px 3px 3px 3px;
+    border: none;
+    outline: none;
+    text-align: left;
+    display: inline-block;
+  }
+
+  #searchResults li {
+    list-style: none;
+    margin-left: 0em;
+    /*background-color: #333;*/
+    border-bottom: 1px dotted #000;
+  }
+
+  #searchResults li .title {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+
+  #searchResults {
+    visibility: inherit;
+    display: inline-block;
+    width: 320px;
+  }
+
+  #searchResults a {
+    text-decoration: none !important;
+    padding: 10px;
+    display: inline-block;
+    width: 100%;
+  }
+
+  #searchResults a:hover,
+  a:focus {
+    outline: 0;
+    background-color: #666;
+    color: #fff;
+    width: 100%;
+  }
 </style>
 
 <!DOCTYPE html>
 <html lang="{{ $.Site.Language }}">
+
 <head>
   {{ block "title" . }}
-    <title>{{ if .IsHome }}{{ $.Site.Title }}{{ else }}{{ .Title }} :: {{ $.Site.Title }}{{ end }}</title>
+  <title>{{ if .IsHome }}{{ $.Site.Title }}{{ else }}{{ .Title }} :: {{ $.Site.Title }}{{ end }}</title>
   {{ end }}
   {{ partial "head.html" . }}
 </head>
+
 <body class="{{- ( or .Params.color $.Site.Params.ThemeColor ) -}}">
-{{ $container := cond ($.Site.Params.FullWidthTheme | default false) "container full" (cond ($.Site.Params.CenterTheme | default false) "container center" "container") }}
+  {{ $container := cond ($.Site.Params.FullWidthTheme | default false) "container full" (cond ($.Site.Params.CenterTheme | default false) "container center" "container") }}
 
-<div class="{{- $container -}}{{- cond ($.Site.Params.oneHeadingSize | default true) " headings--one-size" "" }}">
+  <div class="{{- $container -}}{{- cond ($.Site.Params.oneHeadingSize | default true) " headings--one-size" "" }}">
 
-  {{ partial "header.html" . }}
+    {{ partial "header.html" . }}
 
-  <div class="content">
-    {{ block "main" . }}
+    <div class="content">
+      {{ block "main" . }}
+      {{ end }}
+    </div>
+
+    <div id="fastSearch" class="overlay">
+      <input id="searchInput" tabindex="0">
+      <ul id="searchResults">
+      </ul>
+    </div>
+    <script src="/js/fuse.js"></script> <!-- download and copy over fuse.js file from fusejs.io -->
+    <script src="/js/fastsearch.js"></script>
+
+    {{ block "footer" . }}
+    {{ partial "footer.html" . }}
     {{ end }}
   </div>
 
-  <div id="fastSearch">
-    <input id="searchInput" tabindex="0">
-    <ul id="searchResults">
-    </ul>
-  </div>
-  <script src="/js/fuse.js"></script> <!-- download and copy over fuse.js file from fusejs.io -->
-  <script src="/js/fastsearch.js"></script>
-
-  {{ block "footer" . }}
-    {{ partial "footer.html" . }}
-  {{ end }}
-</div>
-
 </body>
+
 </html>

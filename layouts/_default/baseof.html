@@ -1,81 +1,3 @@
-<style>
-  #fastSearch {
-    visibility: hidden;
-    position: absolute;
-    right: 25%;
-    left: 25%;
-    top: 25%;
-    display: inline-block;
-    /*width: 300px;*/
-    display: inline-block;
-  }
-
-  .overlay {
-    top: 0px;
-    left: 0px;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 2;
-  }
-
-  #fastSearch ul {
-    margin-left: 0;
-    padding: 0;
-    width: 100%;
-  }
-
-  #fastSearch input {
-    background-position: left 15px center;
-    background-repeat: no-repeat;
-    background-size: 3.5%;
-    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkViZW5lXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjIuNyAyMi41IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyMi43IDIyLjUiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxjaXJjbGUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjY2NzY2IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgY3g9IjguMSIgY3k9IjguNCIgcj0iNi44Ii8+PGxpbmUgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjY2NzY2IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgeDE9IjEzLjIiIHkxPSIxMi45IiB4Mj0iMjEuNSIgeTI9IjIxLjQiLz48L3N2Zz4=);
-    width: 100%;
-    font-size: 1.6em;
-    color: rgb(0, 0, 0);
-    border-radius: 3px 3px 3px 3px;
-    outline: none;
-    text-align: left;
-    display: block;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    font-size: 1.6rem;
-    padding: 0 56px;
-    height: 50px;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  }
-
-  #searchResults li {
-    list-style: none;
-    margin-left: 0em;
-    border-bottom: 1px dotted #000;
-  }
-
-  #searchResults li .title {
-    font-size: 1.1em;
-    margin-bottom: 10px;
-    display: inline-block;
-  }
-
-  #searchResults {
-    visibility: inherit;
-    display: inline-block;
-    width: 320px;
-  }
-
-  #searchResults a {
-    text-decoration: none !important;
-    padding: 10px;
-    display: inline-block;
-    width: 100%;
-  }
-
-  #searchResults a:hover,
-  a:focus {
-    outline: 0;
-    background-color: #666;
-    color: #fff;
-    width: 100%;
-  }
-</style>
-
 <!DOCTYPE html>
 <html lang="{{ $.Site.Language }}">
 
@@ -103,7 +25,9 @@
       <ul id="searchResults">
       </ul>
     </div>
-    <script src="/blog/js/fuse.js"></script> <!-- download and copy over fuse.js file from fusejs.io -->
+
+    <!-- Custom -->
+    <script src="/blog/js/fuse.js"></script>
     <script src="/blog/js/fastsearch.js"></script>
 
     {{ block "footer" . }}
